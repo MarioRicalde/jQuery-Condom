@@ -30,7 +30,7 @@
       },
       // Get methods.
       methods: function() { 
-        log(methods[ns]); 
+        return $.extend({}, methods[ns]); 
       } 
     }; 
   };
