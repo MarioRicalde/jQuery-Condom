@@ -1,4 +1,4 @@
-# jQuery Condom (632 bytes minified!)
+# jQuery Condom (648 bytes minified!)
 ## Protecting your jQuery application with Namespaces.
 
 `jQuery Condom` provides a namespace functionality which will allow you to create jQuery plugins on the fly; without touching the main `jQuery.fn` method. You have the same amount of control as if defining it from `jQuery.fn`.
