@@ -9,7 +9,14 @@ The jQuery official Plugin Authoring guide states: `Under no circumstance should
 
 When you write a plugin (or any portion of code for that matter), you'll usually end up passing `jQuery` objects as `attributes` to methods; breaking the jQuery way (and sweet chains).
 
-jQuery Condom helps you with this by granting you namespaces; which will allow you to define methods that can override other jQuery Functions **just for that scope**.
+jQuery Condom helps you with this by granting you namespaces.
+
+## Key Features:
+
+* Inside a namespace function `$(this)` will return the object that invoked it.
+* When you're on a namespace, you can override default jQuery Plugins without affecting the original functions.
+* Really small (less than 1kb)
+ 
 
 You can view a example of this here: [DEMO](http://jsfiddle.net/kuroir/PDNb9/9/)
 
@@ -39,7 +46,7 @@ You can add methods in two different ways:
     });
 
 ### jQuery.ns().methods
-Return the available methods to the given namespace.
+Return the available methods to the given namespace, this can be used to check if the namespace is defined previously.
 
     $.ns('myNamespace).methods();
     
