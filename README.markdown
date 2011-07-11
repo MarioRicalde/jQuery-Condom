@@ -55,3 +55,14 @@ Invoke the namespace with a given selector. Note that the methods called after t
 
     // You can call methods from that namespace, and even jQuery methods.
     $('.selector').ns('myNamespace').myFunc1().myFunc2().hover()
+
+### NEW! Store the namespace as a jQuery Object!
+
+    my$ = $.ns('myNamespace');
+    my$('.sel').myFunc1().myFunc2().hover()
+    
+Or even better!
+
+    (function($) {
+      $('.sel').myFunc1().myFunc2().hover()
+    })($.ns('myNamespace'));
