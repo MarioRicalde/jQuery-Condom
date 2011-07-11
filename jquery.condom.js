@@ -1,6 +1,6 @@
 /* 
  * jQuery Condom (Use namespaces to protect your global integrity.) 
- * Version 0.0.1 
+ * Version 0.0.2
  * 
  * Copyright (c) 2011 Mario "Kuroir" Ricalde (http://kuroir.com)  
  *   & Micha Niskin (micha@thinkminimo.com) 
