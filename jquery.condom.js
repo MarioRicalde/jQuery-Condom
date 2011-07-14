@@ -15,7 +15,6 @@
 
     // Get reference to a namespaced jQ object
     function nsfun(selector, context) {
-      console.log(selector);
       return $(selector, context).ns(ns);
     }
     
