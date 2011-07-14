@@ -25,7 +25,9 @@ You can view a example of this here: [DEMO](http://jsfiddle.net/kuroir/PDNb9/9/)
 ### jQuery.ns
 Defines a namespace. This statement is needed to define new methods via `add()`
 
-    $.ns('myNamespace')
+```javascript
+$.ns('myNamespace')
+```
 
 ### jQuery.ns().add
 Adds the given method(s) into the namespace. You can override **any** method, even jQuery ones **without** affecting the global functionality. 
@@ -33,36 +35,56 @@ Adds the given method(s) into the namespace. You can override **any** method, ev
 You can add methods in two different ways.
 
 #### Chained Way
-    $.ns('myNamespace').add('myFunc1', function(){
-      // ..
-    }).add('myFunc2', function(){
-      // ..
-    });
+```javascript
+$.ns('myNamespace').add('myFunc1', function(){
+  // ..
+}).add('myFunc2', function(){
+  // ..
+});
+```
     
 #### Object Way
-    $.ns('myNamespace').add({
-      myFunc1: function() {},
-      myFunc2: function() {}
-    });
+```javascript
+$.ns('myNamespace').add({
+  myFunc1: function() {},
+  myFunc2: function() {}
+});
+```
+
 
 ### jQuery.ns().methods
 Return the available methods to the given namespace, this can be used to check if the namespace is defined previously. Useful when distributing your libraries that have common namespace names. 
 
-    $.ns('myNamespace).methods();
-    
+```javascript
+$.ns('myNamespace').methods();
+```
+
+  
 ### jQuery([selector]).ns([namespace])
 Invoke the namespace with a given selector. Note that the methods called after the `.ns` declaration will only work for the given namespace; so for instance `.hover()` on global is not the same as `.hover()` in `myNamespace`.
 
-    // You can call methods from that namespace, and even jQuery methods.
-    $('.selector').ns('myNamespace').myFunc1().myFunc2().hover()
+```javascript
+// You can call methods from that namespace, and even jQuery methods.
+$('.selector').ns('myNamespace').myFunc1().myFunc2().hover()
+```
 
 ### NEW! Store the namespace as a jQuery Object!
 
-    my$ = $.ns('myNamespace');
-    my$('.sel').myFunc1().myFunc2().hover()
-    
-Or even better!
+```javascript
+my$ = $.ns('myNamespace');
+my$('.sel').myFunc1().hover();
+my$('.new-sel').myFunc1();
+```
 
-    (function($) {
-      $('.sel').myFunc1().myFunc2().hover()
-    })($.ns('myNamespace'));
+### NEW! Add a NameSpace to ANY plugin!
+
+Adding jQuery Condom functionality to any plugin is really easy! all you need to do is add `.ns('theNamespace')` before `.fn` declaration!
+
+```javascript
+// Before
+$.fn.myPlugin = function() { ... }
+
+// After
+$.ns('yay').fn.myPlugin = function() { ... }
+
+```
