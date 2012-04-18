@@ -21,18 +21,31 @@
     // Allows you to add methods ala jQuery.fn (useful to namespace premade plugins)
     nsfun.fn = methods[ns];
 
+    // If `key` is an object val is ignored and `key` is returned. Otherwise,
+    // an object is returned with obj[key] set to `val`.
+    function asObj(key, val) {
+      var obj = $.type(key) == "object" ? key : {};
+      if (obj !== key)
+        obj[key] = val;
+      return obj;
+    }
+
     // Add a method.
     nsfun.add = function(fname, fn) { 
-      var new_funcs = typeof fname == "object" ? fname : {}; 
-      // One method.
-      if (new_funcs !== fname) 
-        new_funcs[fname] = fn; 
-      // Group of methods.
-      $.each(new_funcs, function(fname, fn) { 
-        methods[ns][fname] = function() { 
-          fn.apply(this, arguments); 
-          return this; 
-        }; 
+      $.each(asObj(fname, fn), function(fname, fn) { 
+        methods[ns][fname] = function() { return fn.apply(this, arguments) }; 
+      }); 
+      return this; 
+    };
+
+    // Monkey-patch a jQuery instance method.
+    nsfun.patch = function(fname, fn) {
+      $.each(asObj(fname, fn), function(fname, fn) { 
+        methods[ns][fname] = (function(orig) {
+          return function() { 
+            return fn.apply(this, [orig].concat($.makeArray(arguments))); 
+          }; 
+        })($.fn[fname]);
       }); 
       return this; 
     };
